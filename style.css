@@ -1,5 +1,6 @@
 body {
   background-color: #f8f9fa;
+  padding-top: 20px;
 }
 
 .card {
@@ -13,12 +14,12 @@ body {
   color: #fff;
 }
 
-#monthYear {
+#currentMonthYear {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-#calendarDays .day {
+#calendar .day {
   cursor: pointer;
 }
 
@@ -31,3 +32,17 @@ body {
   background-color: #0056b3;
   border-color: #0056b3;
 }
+/* Updated CSS */
+#calendar table {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#calendar .bg-today {
+  background-color: #ffc107 !important; /* Highlight today's date more prominently */
+  color: #212529;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+/* Updated JavaScript */
+
