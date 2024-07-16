@@ -9,7 +9,8 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.card-header, .card-footer {
+.card-header,
+.card-footer {
   background-color: #007bff;
   color: #fff;
 }
@@ -38,11 +39,9 @@ body {
 }
 
 #calendar .bg-today {
-  background-color: #ffc107 !important; /* Highlight today's date more prominently */
+  background-color: #ffc107 !important; 
   color: #212529;
   font-weight: bold;
   border-radius: 50%;
 }
-
-/* Updated JavaScript */
 

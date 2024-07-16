@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center">
-                <div class="row">
-                    <div class="col">
-                        <button id="prevMonth" class="btn btn-secondary">&laquo; Previous</button>
-                    </div>
-                    <div class="col">
-                        <span id="currentMonthYear" class="h5"></span>
-                    </div>
-                    <div class="col">
-                        <button id="nextMonth" class="btn btn-secondary float-right">Next &raquo;</button>
-                    </div>
-                </div>
-            </div>
-            <div id="calendar" class="card-body">
-                <!-- Calendar content will be generated dynamically here -->
-            </div>
-        </div>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+      }
+      .calendar {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .calendar-header {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+      }
+      .calendar-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .calendar-table th,
+      .calendar-table td {
+        text-align: center;
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+      .current-day {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calendar" class="calendar">
+      <div id="calendar-header" class="calendar-header">
+        <button id="prevMonth">&laquo; Previous</button>
+        <span id="currentMonthYear"></span>
+        <button id="nextMonth">Next &raquo;</button>
+      </div>
+      <table id="calendar-body" class="calendar-table"></table>
     </div>
 
-    <!-- Bootstrap JS and dependencies (jQuery) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Custom JavaScript -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
