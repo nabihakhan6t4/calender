@@ -1,82 +1,84 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const calendarDays = document.getElementById("calendarDays");
-  const monthYear = document.getElementById("monthYear");
-  const prevMonthBtn = document.getElementById("prevMonthBtn");
-  const nextMonthBtn = document.getElementById("nextMonthBtn");
+document.addEventListener('DOMContentLoaded', function () {
+  const currentDate = new Date();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
 
-  let currentMonth = new Date().getMonth();
-  let currentYear = new Date().getFullYear();
+  const calendarDiv = document.getElementById('calendar');
+  const prevMonthBtn = document.getElementById('prevMonth');
+  const nextMonthBtn = document.getElementById('nextMonth');
+  const currentMonthYear = document.getElementById('currentMonthYear');
 
   function generateCalendar(month, year) {
-    let daysInMonth = new Date(year, month + 1, 0).getDate();
-    let firstDay = new Date(year, month, 1).getDay();
+      // Clear previous calendar content
+      calendarDiv.innerHTML = '';
 
-    calendarDays.innerHTML = "";
-    monthYear.textContent = `${getMonthName(month)} ${year}`;
+      // Set current month and year text
+      currentMonthYear.textContent = `${getMonthName(month)} ${year}`;
 
-    // Generate empty cells for previous month days
-    for (let i = 0; i < firstDay; i++) {
-      let dayCell = document.createElement("div");
-      dayCell.classList.add("col", "text-muted", "text-center", "py-3");
-      dayCell.textContent = "";
-      calendarDays.appendChild(dayCell);
-    }
+      // Get the first day of the month
+      const firstDay = new Date(year, month, 1);
+      const startingDay = firstDay.getDay(); // 0 for Sunday, 1 for Monday, etc.
 
-    // Generate cells for current month days
-    for (let day = 1; day <= daysInMonth; day++) {
-      let dayCell = document.createElement("div");
-      dayCell.classList.add(
-        "col",
-        "day",
-        "text-center",
-        "py-3",
-        "cursor-pointer",
-        "border",
-        "border-light"
-      );
-      dayCell.textContent = day;
-      dayCell.addEventListener("click", function () {
-        alert(`Clicked on ${day} ${getMonthName(month)} ${year}`);
-      });
-      calendarDays.appendChild(dayCell);
-    }
+      // Get number of days in the month
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      // Create calendar table
+      let table = '<table class="table table-bordered">';
+      table += '<thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>';
+      table += '<tbody>';
+
+      // Initialize day counters
+      let day = 1;
+
+      // Create rows for the calendar
+      for (let i = 0; i < 6; i++) { // 6 weeks maximum
+          table += '<tr>';
+          for (let j = 0; j < 7; j++) {
+              if (i === 0 && j < startingDay) {
+                  table += '<td></td>';
+              } else if (day > daysInMonth) {
+                  break;
+              } else {
+                  const isCurrentDay = (day === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear());
+                  table += `<td class="${isCurrentDay ? 'bg-primary text-light' : ''}">${day}</td>`;
+                  day++;
+              }
+          }
+          table += '</tr>';
+      }
+
+      table += '</tbody></table>';
+
+      // Append the generated calendar to the calendarDiv
+      calendarDiv.innerHTML = table;
   }
 
-  function getMonthName(month) {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return months[month];
-  }
-
-  prevMonthBtn.addEventListener("click", function () {
-    currentMonth--;
-    if (currentMonth < 0) {
-      currentMonth = 11;
-      currentYear--;
-    }
-    generateCalendar(currentMonth, currentYear);
-  });
-
-  nextMonthBtn.addEventListener("click", function () {
-    currentMonth++;
-    if (currentMonth > 11) {
-      currentMonth = 0;
-      currentYear++;
-    }
-    generateCalendar(currentMonth, currentYear);
-  });
-
+  // Initial calendar generation
   generateCalendar(currentMonth, currentYear);
+
+  // Event listeners for previous and next month buttons
+  prevMonthBtn.addEventListener('click', function () {
+      currentMonth--;
+      if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+      }
+      generateCalendar(currentMonth, currentYear);
+  });
+
+  nextMonthBtn.addEventListener('click', function () {
+      currentMonth++;
+      if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+      }
+      generateCalendar(currentMonth, currentYear);
+  });
+
+  // Function to get month name from index
+  function getMonthName(monthIndex) {
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+      return monthNames[monthIndex];
+  }
 });
