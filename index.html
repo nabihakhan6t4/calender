@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beautiful Calendar</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css"> <!-- Customize your styles here -->
-</head>
-<body>
-  <div class="container">
-    <h1 class="text-center mt-5 mb-4">Beautiful Calendar</h1>
-    <div class="calendar">
-      <div class="weekdays">
-        <div class="day">SUN</div>
-        <div class="day">MON</div>
-        <div class="day">TUE</div>
-        <div class="day">WED</div>
-        <div class="day">THU</div>
-        <div class="day">FRI</div>
-        <div class="day">SAT</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calendar">
+        <div class="header">
+          <h1 class="text-center mb-4">Calendar</h1>
+          <div class="text-center mb-3">
+            <button class="btn btn-primary mr-2" id="prevMonthBtn">
+              &lt; Previous Month
+            </button>
+            <button class="btn btn-primary" id="nextMonthBtn">
+              Next Month &gt;
+            </button>
+          </div>
+          <div id="monthYear" class="text-center mb-3"></div>
+        </div>
+        <div class="days row" id="calendarDays">
+          <!-- Days will be generated here -->
+        </div>
       </div>
-      <div class="days"></div>
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="script.js"></script> <!-- Customize your JavaScript here -->
-</body>
+    <!-- Bootstrap JS and dependencies (jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>
